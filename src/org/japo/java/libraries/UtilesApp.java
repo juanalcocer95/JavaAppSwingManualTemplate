@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.util.Properties;
 
@@ -164,5 +165,20 @@ public class UtilesApp {
 
         // Devuelve Estado
         return instanciaOK;
+    }
+    
+    //Cargar Propiedades desde la carpeta porperties
+    public static Properties importarPropiedadesRecurso(String recurso){
+        // Objeto de Propiedades Vacio
+        Properties prp = new Properties();
+        // Cargar Fichero de Propiedades 
+        try(InputStream is = ClassLoader.getSystemResourceAsStream(recurso)){
+            prp.load(is);
+                   
+        }catch(Exception e){
+            System.out.println("Error: No se han encontrado las propiedades de la aplicacion");
+        }
+        //Devolver propiedades
+        return prp;
     }
 }
