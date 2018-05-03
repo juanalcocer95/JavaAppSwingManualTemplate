@@ -22,17 +22,22 @@ import org.japo.java.libraries.UtilesSwing;
 
 /**
  *
- * @author Juan Alcocer Canet - juanasir1995@gmail.com
+ * @author José A. Pacheco Ondoño - joanpaon@gmail.com
  */
 public class GUI extends JFrame {
 
     // Propiedades App
-    public static final String PRP_LOOK_AND_FEEL = "look_and_feel";
-    public static final String PRP_FAVICON = "favicon";
-
+    public static final String PRP_LOOK_AND_FEEL_PROFILE = "look_and_feel_profile";
+    public static final String PRP_FAVICON_RESOURCE = "favicon_resource";
+    public static final String PRP_BACKGROUND_RESOURCE = "background_resource";
+    public static final String PRP_FONT_RESOURCE = "font_resource";
+    
+    
     // Valores por Defecto
-    public static final String DEF_LOOK_AND_FEEL = UtilesSwing.LNF_NIMBUS;
-    public static final String DEF_FAVICON = "img/favicon.png";
+    public static final String DEF_LOOK_AND_FEEL_PROFILE = UtilesSwing.LNF_WINDOWS_PROFILE;
+    public static final String DEF_FAVICON_RESOURCE = "images/favicon.png";
+    public static final String DEF_BACKGROUND_RESOURCE = "images/background.png";
+    public static final String DEF_FONT_RESOURCE = "fonts/default_font.ttf";
 
     // Referencias
     private Properties prp;
@@ -69,12 +74,12 @@ public class GUI extends JFrame {
         this.prp = prp;
 
         // Establecer LnF
-        UtilesSwing.establecerLnF(prp.getProperty(PRP_LOOK_AND_FEEL, DEF_LOOK_AND_FEEL));
+        UtilesSwing.establecerLookAndFeelProfile(prp.getProperty(PRP_LOOK_AND_FEEL_PROFILE, DEF_LOOK_AND_FEEL_PROFILE));
     }
 
     // Inicialización Posterior
     private void initAfter() {
         // Establecer Favicon
-        UtilesSwing.establecerFavicon(this, prp.getProperty(PRP_FAVICON, DEF_FAVICON));
+        UtilesSwing.establecerFavicon(this, prp.getProperty(PRP_FAVICON_RESOURCE, DEF_FAVICON_RESOURCE));
     }
 }
