@@ -16,10 +16,15 @@
 package org.japo.java.forms;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import org.japo.java.events.MEM;
 import org.japo.java.events.MMEM;
 import org.japo.java.libraries.UtilesSwing;
@@ -45,7 +50,7 @@ public class GUI extends JFrame {
 
     // Referencias
     private Properties prp;
-
+    
     private int xIni;
     private int yIni;
     
@@ -63,21 +68,30 @@ public class GUI extends JFrame {
 
     // Construcción - GUI
     private void initComponents() {
+
+        //Ejemplo Texto
+        JLabel lblTitle = new JLabel("Plantilla Swing Manual");
+        //Establecer fuente
+        lblTitle.setFont(UtilesSwing.importarFuenteRecurso(prp.getProperty(
+                        PRP_FONT_RESOURCE, DEF_FONT_RESOURCE)).
+                            deriveFont(Font.BOLD + Font.ITALIC, 30f));
+        lblTitle.setSize(600, 50);
+        lblTitle.setLocation(0, 10);
+        lblTitle.setHorizontalAlignment(JLabel.CENTER);
+       
         // Panel Principal
         JPanel pnlPpal = new JPanel();
-
+        pnlPpal.add(lblTitle);
+        
         // Ventana Principal
         setContentPane(pnlPpal);
+        pnlPpal.setLayout(null); // Eliminamos el layout
         setTitle("Swing Manual #00");
         setResizable(false);
         setSize(600, 400);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);            
         
-        //Establecer fuente
-        pnlPpal.setFont(UtilesSwing.importarFuenteRecurso(prp.getProperty(
-                        PRP_FONT_RESOURCE, DEF_FONT_RESOURCE)).
-                            deriveFont(Font.BOLD + Font.ITALIC, 30f));
         
         //Eventos
         
@@ -109,6 +123,7 @@ public class GUI extends JFrame {
         xIni = e.getXOnScreen();
         yIni = e.getYOnScreen();
     }
+    
     public void gestionarArrastre(MouseEvent e){
         int xFin = e.getXOnScreen();
         int xOff = xFin - xIni;
