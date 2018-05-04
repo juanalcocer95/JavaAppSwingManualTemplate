@@ -1,5 +1,5 @@
-/*
- * Copyright 2017 José A. Pacheco Ondoño - joanpaon@gmail.com.
+/* 
+ * Copyright 2018 Juan Alcocer Canet - juanasir1995@gmail.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.japo.java.forms;
 
+import java.awt.Font;
 import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ import org.japo.java.libraries.UtilesSwing;
 
 /**
  *
- * @author José A. Pacheco Ondoño - joanpaon@gmail.com
+ * @author Juan Alcocer Canet - juanasir1995@gmail.com
  */
 public class GUI extends JFrame {
 
@@ -66,8 +67,14 @@ public class GUI extends JFrame {
         setSize(600, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
+        
+        //Establecer fuente
+        pnlPpal.setFont(UtilesSwing.importarFuenteRecurso(prp.getProperty(
+                        PRP_FONT_RESOURCE, DEF_FONT_RESOURCE)).
+                            deriveFont(Font.BOLD + Font.ITALIC, 30f));
+        
+  
+        }
     // Inicialización Anterior    
     private void initBefore(Properties prp) {
         // Memorizar Referencia

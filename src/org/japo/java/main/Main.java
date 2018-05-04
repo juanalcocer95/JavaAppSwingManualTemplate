@@ -1,5 +1,5 @@
 /* 
- * Copyright 2017 José A. Pacheco Ondoño - joanpaon@gmail.com.
+ * Copyright 2018 Juan Alcocer Canet - juanasir1995@gmail.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import org.japo.java.libraries.UtilesApp;
 
 /**
  *
- * @author José A. Pacheco Ondoño - joanpaon@gmail.com
+ * @author Juan Alcocer Canet - juanasir1995@gmail.com
  */
 public class Main {
     // Fichero Propiedades App
