@@ -16,9 +16,12 @@
 package org.japo.java.forms;
 
 import java.awt.Font;
+import java.awt.event.MouseEvent;
 import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import org.japo.java.events.MEM;
+import org.japo.java.events.MMEM;
 import org.japo.java.libraries.UtilesSwing;
 
 /**
@@ -43,6 +46,9 @@ public class GUI extends JFrame {
     // Referencias
     private Properties prp;
 
+    private int xIni;
+    private int yIni;
+    
     // Constructor
     public GUI(Properties prp) {
         // Inicialización Anterior
@@ -73,8 +79,15 @@ public class GUI extends JFrame {
                         PRP_FONT_RESOURCE, DEF_FONT_RESOURCE)).
                             deriveFont(Font.BOLD + Font.ITALIC, 30f));
         
-  
+        //Eventos
+        
+        /* Eventos necesarios para Arrastre ventana
+        addMouseListener(new MEM(this));
+        addMouseMotionListener(new MMEM(this));            
+        */
+        
         }
+    
     // Inicialización Anterior    
     private void initBefore(Properties prp) {
         // Memorizar Referencia
@@ -89,4 +102,25 @@ public class GUI extends JFrame {
         // Establecer Favicon
         UtilesSwing.establecerFavicon(this, prp.getProperty(PRP_FAVICON_RESOURCE, DEF_FAVICON_RESOURCE));
     }
+    
+    
+    //Arrastre ventana
+    public void iniciarArrastre(MouseEvent e){
+        xIni = e.getXOnScreen();
+        yIni = e.getYOnScreen();
+    }
+    public void gestionarArrastre(MouseEvent e){
+        int xFin = e.getXOnScreen();
+        int xOff = xFin - xIni;
+        xIni = xFin;
+        
+        int yFin = e.getYOnScreen();
+        int yOff = yFin - yIni;
+        yIni = yFin;
+        
+        int xWin = getLocation().x;
+        int yWin = getLocation().y;
+        
+        setLocation(xWin+xOff, yWin+yOff);
+    } 
 }

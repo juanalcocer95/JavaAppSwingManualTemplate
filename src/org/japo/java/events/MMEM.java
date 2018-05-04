@@ -36,7 +36,10 @@ public class MMEM implements MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        
+        //Arrastre ventana
+        //gui.gestionarArrastre(e);
+        
     }
 
     @Override
