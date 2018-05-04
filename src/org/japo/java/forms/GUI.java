@@ -15,6 +15,7 @@
  */
 package org.japo.java.forms;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -25,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import org.japo.java.components.BackgroundPanel;
 import org.japo.java.events.MEM;
 import org.japo.java.events.MMEM;
 import org.japo.java.libraries.UtilesSwing;
@@ -79,17 +81,28 @@ public class GUI extends JFrame {
         lblTitle.setLocation(0, 10);
         lblTitle.setHorizontalAlignment(JLabel.CENTER);
        
+        //Background
+        /*
+        String bckPpal = prp.getProperty(PRP_BACKGROUND_RESOURCE, DEF_BACKGROUND_RESOURCE);
+        URL urlPpal = ClassLoader.getSystemResource(bckPpal);
+        Image imgPpal = new ImageIcon(urlPpal).getImage();
+        */
+        
         // Panel Principal
         JPanel pnlPpal = new JPanel();
+        //JPanel pnlPpal = new BackgroundPanel(imgPpal); // JPanel con imagen de fondo
         pnlPpal.add(lblTitle);
-        
+                
         // Ventana Principal
         setContentPane(pnlPpal);
         pnlPpal.setLayout(null); // Eliminamos el layout
         setTitle("Swing Manual #00");
         setResizable(false);
         setSize(600, 400);
+        setUndecorated(false); //Mostar la Barra de ventana de Windows 
         setLocationRelativeTo(null);
+        //setBackground(new Color(0, 0, 0, 0)); // El fondo del programa es transparente, solo usar con setUndecorated(true).
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);            
         
         
