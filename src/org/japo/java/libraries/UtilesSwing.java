@@ -339,4 +339,34 @@ public class UtilesSwing {
         // Devuelve fuente
         return f;
     }
+    
+    // Escalar/Asignar Image > Etiqueta
+    public static final void adaptarImagenEtiqueta(JLabel lblAct, Image imgIni) {
+        try {
+            // Imagen Original >> Imagen Escalada 
+            Image imgFin = imgIni.getScaledInstance(
+                    lblAct.getSize().width,
+                    lblAct.getSize().height,
+                    Image.SCALE_FAST);
+
+            // Icon > Etiqueta Imagen
+            lblAct.setIcon(new ImageIcon(imgFin));
+        } catch (Exception e) {
+            System.out.println("ERROR: Reescalar/Asignar imagen a etiqueta");
+        }
+    }
+
+    // Escalar Image > Etiqueta
+    public static void escalarImagenEtiqueta(JLabel lblAct, Image imgIni, int ancAct, int altAct) {
+        try {
+            // Imagen Original >> Imagen Escalada 
+            Image imgFin = imgIni.getScaledInstance(ancAct, altAct, Image.SCALE_FAST);
+
+            // Icon > Etiqueta Imagen
+            lblAct.setIcon(new ImageIcon(imgFin));
+        } catch (Exception e) {
+            System.out.println("ERROR: No se ha podido adaptar imagen a etiqueta");
+        }
+    }
+    
 }
