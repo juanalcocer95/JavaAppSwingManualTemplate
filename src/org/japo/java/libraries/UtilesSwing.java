@@ -369,4 +369,51 @@ public class UtilesSwing {
         }
     }
     
+    // Portapapeles >> Texto
+    public static final String importarTextoPortapapeles() {
+        // Referencia al texto del portapapeles
+        String result = "";
+
+        try {
+            // Acceso al portapapeles
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+            // Contenido del Portapapeles
+            // El parámetro de getContents no se usa
+            Transferable contents = clipboard.getContents(null);
+
+            // Extrae texto del portapapeles
+            result = (String) contents.getTransferData(DataFlavor.stringFlavor);
+        } catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+            System.out.println("ERROR: Lectura del portapapeles");
+        }
+
+        // Texto extraido
+        return result;
+    }
+
+    // Texto >> Portapapeles
+    public static final boolean exportarTextoPortapapeles(String texto, ClipboardOwner propietario) {
+        // Semáforo
+        boolean procesoOK = false;
+
+        try {
+            // Entidad que implementa la capacidad de transmitir texto
+            StringSelection transmisor = new StringSelection(texto);
+
+            // Acceso al portapapeles
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+            // Transmisión de texto
+            clipboard.setContents(transmisor, propietario);
+
+            // Actualiza semáforo
+            procesoOK = true;
+        } catch (HeadlessException e) {
+            System.out.println("ERROR: Escritura en el portapapeles");
+        }
+
+        // Devuelve semáforo
+        return procesoOK;
+    }
 }
