@@ -69,6 +69,25 @@ public class UtilesSwing {
     public static final int DEF_FONT_STYLE = Font.PLAIN;
     public static final int DEF_FONT_SIZE = 12;
     
+    
+    // Lista de Nombres de las Clases de los LnF Instalados
+    public static final String[] obtenerNombresClasesLNFInstalados(){
+        // Lista Info LnF Instalados
+        UIManager.LookAndFeelInfo[] lnfInfo = UIManager.getInstalledLookAndFeels();
+        
+         // Lista Nombres de las clases LnF Instalados
+        String[] lnfClassName = new String [lnfInfo.length];
+        
+        // Extrae Nombres de las clases LnF Instalados
+        for (int i = 0 ; i < lnfInfo.length; i++){
+            lnfClassName[i] = lnfInfo[i].getClassName();
+        }
+        
+        // Devuelve Nombres de las clases LnF Instalados
+        return lnfClassName;
+    }
+    
+    // Establecer LnF - Nombre de Clase
     public static final String[] obtenerNombresLnfInstalados(){
         UIManager.LookAndFeelInfo[] lnfInfo = UIManager.getInstalledLookAndFeels();
         String[] lnfName = new String [lnfInfo.length];
@@ -77,16 +96,8 @@ public class UtilesSwing {
         }
         return lnfName;   
     }
-    
-    public static final String[] obtenerNombresClasesLNFInstalados(){
-        UIManager.LookAndFeelInfo[] lnfInfo = UIManager.getInstalledLookAndFeels();
-        String[] lnfClassName = new String [lnfInfo.length];
-        for (int i = 0 ; i < lnfInfo.length; i++){
-            lnfClassName[i] = lnfInfo[i].getClassName();
-        }
-        return lnfClassName;
-    }
-    
+
+    // Establecer LnF
     public static final void establecerLookAndFeel(String lnfClass){
         try{
             UIManager.setLookAndFeel(lnfClass);
@@ -96,6 +107,7 @@ public class UtilesSwing {
         }
     }
     
+    // Establecer LnF - Nombre de Perfil
     public static final void establecerLookAndFeelProfile(String lnfProfile){
         if(lnfProfile.toUpperCase().equals(LNF_SYSTEM_PROFILE)){
             establecerLnFSistema();
@@ -106,18 +118,20 @@ public class UtilesSwing {
                 for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()){
                     if(lnfProfile.toUpperCase().equals(info.getName().toUpperCase())){
                         UIManager.setLookAndFeel(info.getClassName());                              
-                        }
                     }
-                } catch( ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
-                    System.out.println("Error: No se ha instalado el LnF_Perfil");
                 }
+            } catch( ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+                System.out.println("Error: No se ha instalado el LnF_Perfil");
             }
         }
+    }
     
+    // Obtener Nombre LnF Sistema
     public static final String obtenerNombreLnFSistema(){
         return UIManager.getSystemLookAndFeelClassName();
     }
     
+    // establecer LnF Sistema
     public static final void establecerLnFSistema() {
         try{
             UIManager.getCrossPlatformLookAndFeelClassName();
@@ -126,10 +140,12 @@ public class UtilesSwing {
         }
     }
     
+    // Obtener Nombre LnF Sistema
     public static final String obtenerNombreLnFCrossPlatform(){
         return UIManager.getCrossPlatformLookAndFeelClassName();
     }
     
+    // Establecer LnF Cross-Platform
     public static final void establecerLnFCrossPlatform(){
         try{
             UIManager.setLookAndFeel(obtenerNombreLnFCrossPlatform());
